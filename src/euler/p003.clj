@@ -12,6 +12,6 @@
 (defn euler-3
   ([] (euler-3 600851475143))
 
-  ([number] (last (filter (fn [d] (divisor? number d))
+  ([number] (last (filter #(divisor? number %)
                           (filter #(prime? %)
                                   (range 1 (Math/sqrt number)))))))
