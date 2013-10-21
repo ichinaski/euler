@@ -2,24 +2,23 @@
 
 ; 4 - Largest Palindrome Product
 ; Largest palindrome product of two 3-digit numbers
-(defn digitCount [number]
+(defn digit-count [number]
   (if-not (zero? number)
     (inc (int (Math/log10 number)))
     1));
 
-(defn getDigit [number pos]
+(defn get-digit [number pos]
   "Given a number, return its digit in position pos"
-  (let [size (digitCount number)
+  (let [size (digit-count number)
         head (long (/ number (Math/pow 10 (dec (- size pos)))))]; first pos digits
     (long (rem head 10))))
 
 (defn palindrome? [number]
-  "Given a number, return a list containing its digits"
-  (let [size (digitCount number)]
+  (let [size (digit-count number)]
     (loop [index 0]
       (if (<= index (/ size 2))
-        (if (= (getDigit number index)
-               (getDigit number (- (dec size) index)))
+        (if (= (get-digit number index)
+               (get-digit number (- (dec size) index)))
             (recur (inc index))
             false)
         true))))
