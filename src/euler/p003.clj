@@ -10,8 +10,11 @@
   (zero? (rem number divisor)))
 
 (defn prime? [number]
-  (not-any? #(divisor? number %)
-            (range 2 (Math/sqrt number))))
+  (cond
+    (> number 2) (not-any? #(divisor? number %)
+                           (range 2 (inc (Math/sqrt number))))
+    (= number 2) true
+    :else        false))
 
 (defn euler-3
   ([] (euler-3 600851475143))
